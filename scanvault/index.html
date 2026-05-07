@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScanVault</title>
+    <meta
+      name="description"
+      content="ScanVault is a simple document scanner app for scanning, organizing, exporting, and sharing documents."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #162033;
+        --muted: #647085;
+        --line: #d9e1ec;
+        --paper: #ffffff;
+        --soft: #f5f8fc;
+        --blue: #2563eb;
+        --green: #0f9f6e;
+        --navy: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--blue);
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.92);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(12px);
+      }
+
+      .nav {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 750;
+        font-size: 20px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+
+      .brand img {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 15px;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .hero {
+        background:
+          linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(37, 99, 235, 0.78)),
+          radial-gradient(circle at 80% 25%, rgba(15, 159, 110, 0.34), transparent 32%),
+          var(--navy);
+        color: #ffffff;
+      }
+
+      .hero-inner {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        min-height: 430px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+        gap: 52px;
+        align-items: center;
+        padding: 72px 0;
+      }
+
+      .eyebrow {
+        color: #b9e7ff;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0 0 14px;
+      }
+
+      h1 {
+        font-size: clamp(44px, 7vw, 78px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        margin: 0 0 22px;
+      }
+
+      .hero p {
+        font-size: 20px;
+        color: #dce7f6;
+        max-width: 610px;
+        margin: 0;
+      }
+
+      .device-panel {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        padding: 26px;
+      }
+
+      .document-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .doc {
+        background: rgba(255, 255, 255, 0.94);
+        color: var(--ink);
+        border-radius: 8px;
+        padding: 18px;
+        min-height: 86px;
+        box-shadow: 0 20px 46px rgba(2, 8, 23, 0.22);
+      }
+
+      .doc strong {
+        display: block;
+        margin-bottom: 9px;
+      }
+
+      .doc-line {
+        height: 8px;
+        border-radius: 99px;
+        background: #dce5f1;
+        margin-top: 8px;
+      }
+
+      .doc-line.short {
+        width: 58%;
+      }
+
+      main {
+        background: var(--paper);
+      }
+
+      .section {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 64px 0;
+      }
+
+      .section h2 {
+        font-size: clamp(28px, 4vw, 40px);
+        line-height: 1.12;
+        letter-spacing: 0;
+        margin: 0 0 16px;
+      }
+
+      .section-intro {
+        color: var(--muted);
+        font-size: 18px;
+        max-width: 760px;
+        margin: 0 0 30px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .feature {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 22px;
+        background: var(--paper);
+      }
+
+      .feature span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        color: #ffffff;
+        background: var(--blue);
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+
+      .feature:nth-child(2) span,
+      .feature:nth-child(5) span {
+        background: var(--green);
+      }
+
+      .feature h3 {
+        font-size: 18px;
+        margin: 0 0 8px;
+      }
+
+      .feature p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .privacy-summary {
+        background: var(--soft);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .summary-item {
+        border-left: 3px solid var(--blue);
+        padding-left: 18px;
+      }
+
+      .summary-item h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .summary-item p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .support {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 28px;
+      }
+
+      .support p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 8px;
+        background: var(--blue);
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 26px 0;
+      }
+
+      .footer-inner {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 780px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 0;
+          gap: 8px;
+        }
+
+        .hero-inner,
+        .features,
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-inner {
+          padding: 56px 0;
+          gap: 34px;
+        }
+
+        .support {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="assets/logo-icon.png" alt="" />
+          <span>ScanVault</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="support.html">Support</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Document scanner app</p>
+          <h1>ScanVault</h1>
+          <p>
+            Scan paper documents, organize them on your device, and export clean PDF files when you need them.
+          </p>
+        </div>
+        <div class="device-panel" aria-hidden="true">
+          <div class="document-stack">
+            <div class="doc">
+              <strong>Scanned document</strong>
+              <div class="doc-line"></div>
+              <div class="doc-line short"></div>
+            </div>
+            <div class="doc">
+              <strong>Organized folders</strong>
+              <div class="doc-line"></div>
+              <div class="doc-line short"></div>
+            </div>
+            <div class="doc">
+              <strong>PDF export</strong>
+              <div class="doc-line"></div>
+              <div class="doc-line short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="section" id="features">
+        <h2>Scan, organize, and export documents.</h2>
+        <p class="section-intro">
+          ScanVault is built for everyday paperwork: receipts, forms, notes, records, and other documents you want to keep tidy.
+        </p>
+
+        <div class="features">
+          <article class="feature">
+            <span>1</span>
+            <h3>Scan with camera</h3>
+            <p>Use your device camera to capture paper documents and turn them into digital pages.</p>
+          </article>
+          <article class="feature">
+            <span>2</span>
+            <h3>Import images</h3>
+            <p>Add selected images from your device when you already have document photos.</p>
+          </article>
+          <article class="feature">
+            <span>3</span>
+            <h3>Organize files</h3>
+            <p>Keep documents grouped in folders so important scans are easier to find later.</p>
+          </article>
+          <article class="feature">
+            <span>4</span>
+            <h3>Export as PDF</h3>
+            <p>Create PDF files for saving, printing, sending, or sharing through other apps.</p>
+          </article>
+          <article class="feature">
+            <span>5</span>
+            <h3>Keep data local</h3>
+            <p>Your scanned documents are stored on your device unless you choose to export or share them.</p>
+          </article>
+          <article class="feature">
+            <span>6</span>
+            <h3>Simple support</h3>
+            <p>For help or privacy questions, contact the developer by email.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="privacy-summary">
+        <div class="section">
+          <h2>Privacy at a glance</h2>
+          <p class="section-intro">
+            ScanVault requests only the access needed for scanning, importing, exporting, and app functionality.
+          </p>
+
+          <div class="summary-grid">
+            <div class="summary-item">
+              <h3>Camera access</h3>
+              <p>Used when you choose to scan a document.</p>
+            </div>
+            <div class="summary-item">
+              <h3>Photo access</h3>
+              <p>Used when you choose to import images from your device.</p>
+            </div>
+            <div class="summary-item">
+              <h3>Local documents</h3>
+              <p>Scans and PDFs stay on your device unless you share or export them.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="support">
+          <div>
+            <h2>Support</h2>
+            <p>For questions, support, or privacy requests, contact cdsjdev@gmail.com.</p>
+          </div>
+          <a class="button" href="support.html">Support Page</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 CDSJ Dev</span>
+        <span><a href="privacy.html">Privacy Policy</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
