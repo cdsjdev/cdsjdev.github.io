@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CDSJ Dev</title>
+    <meta name="description" content="CDSJ Dev builds simple, practical mobile apps and software tools." />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #162033;
+        --muted: #647085;
+        --line: #d9e1ec;
+        --paper: #ffffff;
+        --soft: #f5f8fc;
+        --blue: #2563eb;
+        --green: #0f9f6e;
+        --navy: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--blue);
+      }
+
+      .hero {
+        background:
+          linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(37, 99, 235, 0.82)),
+          radial-gradient(circle at 84% 18%, rgba(15, 159, 110, 0.32), transparent 30%),
+          var(--navy);
+        color: #ffffff;
+      }
+
+      .hero-inner,
+      main,
+      .footer-inner {
+        width: min(1040px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero-inner {
+        min-height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 72px 0;
+      }
+
+      .eyebrow {
+        color: #b9e7ff;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0 0 14px;
+      }
+
+      h1 {
+        font-size: clamp(48px, 7vw, 82px);
+        line-height: 0.98;
+        letter-spacing: 0;
+        margin: 0 0 20px;
+      }
+
+      .hero p {
+        color: #dce7f6;
+        font-size: 20px;
+        max-width: 680px;
+        margin: 0;
+      }
+
+      main {
+        padding: 58px 0 72px;
+      }
+
+      h2 {
+        font-size: clamp(28px, 4vw, 40px);
+        line-height: 1.12;
+        margin: 0 0 16px;
+      }
+
+      .intro {
+        color: var(--muted);
+        font-size: 18px;
+        max-width: 760px;
+        margin: 0 0 28px;
+      }
+
+      .apps {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .app-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 24px;
+        background: var(--paper);
+      }
+
+      .app-card h3 {
+        font-size: 22px;
+        margin: 0 0 10px;
+      }
+
+      .app-card p {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 8px;
+        background: var(--blue);
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .support {
+        margin-top: 34px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 24px;
+        background: var(--soft);
+      }
+
+      .support p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 26px 0;
+      }
+
+      @media (max-width: 720px) {
+        .apps {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Independent software developer</p>
+        <h1>CDSJ Dev</h1>
+        <p>CDSJ Dev builds simple, practical mobile apps and software tools.</p>
+      </div>
+    </section>
+
+    <main>
+      <h2>Apps</h2>
+      <p class="intro">Current public app projects and support resources.</p>
+
+      <div class="apps">
+        <article class="app-card">
+          <h3>ScanVault</h3>
+          <p>A document scanner app for scanning, organizing, exporting, and sharing documents.</p>
+          <a class="button" href="scanvault/">Open ScanVault Site</a>
+        </article>
+      </div>
+
+      <section class="support">
+        <h2>Contact</h2>
+        <p>For ScanVault support, contact <a href="mailto:support.scanvault@gmail.com">support.scanvault@gmail.com</a>.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">© 2026 CDSJ Dev</div>
+    </footer>
+  </body>
+</html>
